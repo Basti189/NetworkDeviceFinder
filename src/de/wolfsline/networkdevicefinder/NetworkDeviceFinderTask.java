@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.wolfsline.networkdevicefindern;
+package de.wolfsline.networkdevicefinder;
 
 import java.io.IOException;
 import java.net.InetAddress;
