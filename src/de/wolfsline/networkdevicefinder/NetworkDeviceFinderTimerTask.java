@@ -13,6 +13,7 @@ public class NetworkDeviceFinderTimerTask extends TimerTask {
 
 	@Override
 	public void run() {
+		System.out.println("Scanne ...");
 		for (int i = 1; i <= 60; i++) {
 			new NetworkDeviceFinderThread(NetworkDeviceFinder.subnet + "." + i);
 		}

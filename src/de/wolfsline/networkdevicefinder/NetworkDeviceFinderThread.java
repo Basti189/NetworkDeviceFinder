@@ -28,7 +28,7 @@ public class NetworkDeviceFinderThread extends Thread {
 	public void run() {
 		try {
 			InetAddress adr = InetAddress.getByName(IP);
-			if (adr.isReachable(3000)) {
+			if (adr.isReachable(5000)) {
 				NetworkDeviceFinder.setNetworkState(IP, true);
 				return;
 			}

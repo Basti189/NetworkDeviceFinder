@@ -19,15 +19,16 @@ import java.util.Timer;
 public class NetworkDeviceFinder {
 
 	public final static String subnet = "192.168.178";
-	public final static String fhemURL = "";
+	public final static String fhemURL = "http://URL:8083/fhem";
 
 	private static List<String> networkDevices = new ArrayList<String>();
 	private static HashMap<String, String> map = new HashMap<String, String>();
 
 	public static void main(String[] args) {
 		//map.put(subnet + "xx", "NAME");
+
 		Timer timer = new Timer();
-		timer.schedule(new NetworkDeviceFinderTimerTask(), 1000, 5000);
+		timer.schedule(new NetworkDeviceFinderTimerTask(), 1000, 10000);
 	}
 
 	/**
@@ -36,16 +37,24 @@ public class NetworkDeviceFinder {
 	 * @param state
 	 */
 	public synchronized static void setNetworkState(String ip, boolean state) {
+		String name = map.get(ip);
+		if (name != null && (!name.equalsIgnoreCase(""))) {
+			if(networkDevices.contains(ip) == true && state == false){
+				setFHEMState(name, state);
+				System.out.println(ip + "->" + state);
+			}
+			else if(networkDevices.contains(ip) == false && state == true){
+				setFHEMState(name, state);
+				System.out.println(ip + "->" + state);
+			}
+		}
 		if (state == false) {
 			networkDevices.remove(ip);
 		} else {
 			networkDevices.add(ip);
-			System.out.println(ip + "->" + state);
+			
 		}
-		String name = map.get(ip);
-		if (name != null && (!name.equalsIgnoreCase(""))) {
-			setFHEMState(name, state);
-		}
+		
 	}
 
 	/**
