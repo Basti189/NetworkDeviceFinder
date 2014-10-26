@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
  * @author Sebastian
  *
  */
-public class NetworkDeviceFinderTask extends Thread {
+public class NetworkDeviceFinderThread extends Thread {
 
 	private String IP;
 
@@ -19,7 +19,7 @@ public class NetworkDeviceFinderTask extends Thread {
 	 * 
 	 * @param ip
 	 */
-	public NetworkDeviceFinderTask(String ip) {
+	public NetworkDeviceFinderThread(String ip) {
 		this.IP = ip;
 		this.start();
 	}

@@ -5,6 +5,7 @@ package de.wolfsline.networkdevicefinder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 /**
  * @author Sebastian
  *
@@ -13,14 +14,13 @@ import java.util.List;
 
 public class NetworkDeviceFinder {
 	
-	private final static String subnet = "192.168.178";
+	public final static String subnet = "192.168.178";
 
 	private static List<String> networkDevices = new ArrayList<String>();
 	
 	public static void main(String[] args) {
-		for(int i = 1 ; i <= 60 ; i++){
-			new NetworkDeviceFinderTask(subnet + "." + i);
-		}
+		Timer timer = new Timer();
+		timer.schedule(new NetworkDeviceFinderTimerTask(), 1000, 5000);
 	}
 	
 	/**
